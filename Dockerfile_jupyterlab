@@ -5,7 +5,6 @@ LABEL maintainer="Ian Wang"
 RUN cd /home/scoped \
     && git clone https://github.com/uafgeotools/pysep.git
 RUN cd /home/scoped/pysep \
-    && echo "" >> requirements.txt \
     && while read requirement; do mamba install --yes $requirement || pip install $requirement; done < requirements.txt \
     && pip install -e . \
     && docker-clean
