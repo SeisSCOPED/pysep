@@ -3,9 +3,8 @@ FROM ghcr.io/seisscoped/container-base:ubuntu20.04_jupyterlab
 LABEL maintainer="Ian Wang"
 
 RUN cd /home/scoped \
-    && git clone https://github.com/uafgeotools/pysep.git
+    && git clone https://github.com/adjtomo/pysep.git
 RUN cd /home/scoped/pysep \
-    && while read requirement; do mamba install --yes $requirement || pip install $requirement; done < requirements.txt \
-    && pip install -e . \
+    && conda env update -f environment.yml -n base \
     && docker-clean
 
